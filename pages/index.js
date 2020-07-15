@@ -1,16 +1,15 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import styled from '@emotion/styled';
+
+
+const Heading = styled.h1`
+  color: blue;
+`;
 
 const Home = () => (
   
     <div>
-      <h1>Start</h1>
-
-      <style jsx>{`
-          h1 {
-            color: grey;
-          }
-      `}
-      </style>
+      <Heading>Start</Heading>
     </div>
   
 )
