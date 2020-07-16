@@ -24,6 +24,10 @@ const Logo = styled.p`
     font-weight: 700;
     font-family: 'Roboto Slab', serif;
     margin-right: 2rem;
+    
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const Header2 = styled.header`
@@ -47,7 +51,7 @@ const DivLeft = styled.div`
 
 const Header = () => {
 
-    const user = true;
+    const user = false;
 
     return ( 
         <header>   
@@ -77,12 +81,12 @@ const Header = () => {
                             </>    
                         ) : (
                             <>
-                                <Link href="/">
+                                <Link href="/login">
                                 <Button
                                     bgColor="true"
                                 >Log In</Button>
                                 </Link>
-                                <Link href="/">
+                                <Link href="/create-account">
                                     <Button>Create Account</Button>
                                 </Link>
                             </>
