@@ -1,15 +1,21 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import Layout from '../components/layout/Layout';
+import { Form, Field, InputSubmit } from '../components/ui/Form';
 
+const H1 = styled.h1`
+  text-align: center;
+  margin-top: 5rem;
+`;
 
 const CreateAccount = () => (
   
     <div>
       <Layout>
         <>
-          <h1>Create Account</h1>
-          <form>
-              <div>
+          <H1>Create Account</H1>
+          <Form>
+              <Field>
                   <label htmlFor="name">Name</label>
                   <input 
                       type="text"
@@ -17,9 +23,9 @@ const CreateAccount = () => (
                       placeholder="Your name"
                       name="name"
                   />
-              </div>
+              </Field>
 
-              <div>
+              <Field>
                   <label htmlFor="email">Email</label>
                   <input 
                       type="email"
@@ -27,9 +33,9 @@ const CreateAccount = () => (
                       placeholder="Your Email"
                       name="email"
                   />
-              </div>
+              </Field>
 
-              <div>
+              <Field>
                   <label htmlFor="password">Password</label>
                   <input 
                       type="password"
@@ -37,13 +43,13 @@ const CreateAccount = () => (
                       placeholder="Your password"
                       name="password"
                   />
-              </div>
+              </Field>
 
-              <input 
+              <InputSubmit 
                   type="submit"
                   value="Create Account"
               />
-          </form>
+          </Form>
         </>
       </Layout>
     </div>
