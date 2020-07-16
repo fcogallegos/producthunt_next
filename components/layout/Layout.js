@@ -7,14 +7,15 @@ const Layout = props => {
     return ( 
         <>
             <Global 
-                styles={`
+                styles={css`
                     :root {
                         --grey: #3d3d3d;
                         --grey2: #6F6F6F;
+                        --grey3: #e1e1e1;
                         --orange: #DA552F;
                     }
 
-                    hmtl {
+                    html {
                         font-size: 62.5%;
                         box-sizing: border-box;
                     }
@@ -51,7 +52,7 @@ const Layout = props => {
 
             <Head>
                     <title>Product Hunt Firebase and Next.js</title>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossOrigin="anonymous" />
                     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"/>
                     <link href="/static/css/app.css" rel="stylesheet" />
             </Head>    
