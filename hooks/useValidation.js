@@ -18,7 +18,29 @@ const useValidation = (stateInitial, validate, fn) => {
         }
     }, []);
 
-    return (  );
+    //function that execute when the user writes something
+    const handleChange = e => {
+        saveValues({
+            ...values,
+            [e.target.name] : e.target.value
+        })
+    } 
+
+    //function that execute when the user press submit
+    const handleSubmit = e => {
+        e.preventDefault();
+        const errorsValidation = validate(values);
+        saveErrors(errorsValidation);
+        saveSubmitForm(true);
+    }
+
+    return {
+        values,
+        errors,
+        submitForm,
+        handleChange,
+        handleSubmit
+    };
 }
  
 export default useValidation;
