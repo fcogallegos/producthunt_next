@@ -1,9 +1,10 @@
 import React from 'react';
-import Search from '../ui/Search';
-import Navegation from './Navegation';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+import Search from '../ui/Search';
+import Navegation from './Navegation';
+import Button from '../ui/Button';
 
 
 const ContainerHeader = styled.div`
@@ -25,14 +26,27 @@ const Logo = styled.p`
     margin-right: 2rem;
 `;
 
+const Header2 = styled.header`
+    border-bottom: 2px solid var(--grey3);
+    padding: 1rem 0;
+`;
+
+const Div = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const P = styled.p`
+    margin-right: 2rem;
+`;
+
 const Header = () => {
+
+    const user = true;
+
     return ( 
-        <header
-            css={css`
-                border-bottom: 2px solid var(--grey3);
-                padding: 1rem 0;
-            `}
-        >
+        <header>   
+          <Header2>
             <ContainerHeader>
                 <div>
                     <Link href="/">
@@ -45,15 +59,31 @@ const Header = () => {
                 </div>
                 
                 <div>
-                    <p>Hi: Francisco</p>
-
-                    <button type="button">Log Out</button>
-
-                    <Link href="/"><a>Log In</a></Link>
-                    <Link href="/"><a>Create Account</a></Link>
+                    <Div>
+                        { user ? (
+                            <>
+                                <p><P>Hi: Francisco</P></p>
+                            
+                                <Button 
+                                    bgColor="true"
+                                >Log Out</Button>
+                            </>    
+                        ) : (
+                            <>
+                                <Link href="/">
+                                <Button
+                                    bgColor="true"
+                                >Log In</Button>
+                                </Link>
+                                <Link href="/">
+                                    <Button>Create Account</Button>
+                                </Link>
+                            </>
+                        ) }
+                    </Div>
                 </div>
             </ContainerHeader>
-            
+          </Header2>
         </header>
      );
 }
