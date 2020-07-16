@@ -40,6 +40,11 @@ const P = styled.p`
     margin-right: 2rem;
 `;
 
+const DivLeft = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
 const Header = () => {
 
     const user = true;
@@ -49,13 +54,15 @@ const Header = () => {
           <Header2>
             <ContainerHeader>
                 <div>
-                    <Link href="/">
-                        <Logo>P</Logo>
-                    </Link>
-
-                    <Search />
-
-                    <Navegation />
+                    <DivLeft>
+                        <Link href="/">
+                            <Logo>P</Logo>
+                        </Link>
+        
+                        <Search />
+        
+                        <Navegation />
+                    </DivLeft>                    
                 </div>
                 
                 <div>
