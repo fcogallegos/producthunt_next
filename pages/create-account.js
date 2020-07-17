@@ -8,7 +8,25 @@ const H1 = styled.h1`
   margin-top: 5rem;
 `;
 
-const CreateAccount = () => (
+//validations
+import useValidation from '../hooks/useValidation';
+import validateCreateAccount from '../validation/validateCreateAccount';
+
+const STATE_INITIAL = {
+  name: '',
+  email: '',
+  password: ''
+}
+
+const CreateAccount = () => {
+
+  const { values, errors, submitForm, handleChange, handleSubmit } = useValidation(STATE_INITIAL, validateCreateAccount);
+
+  function createAccount() {
+    console.log('Creating account...');
+  }
+
+  return (
   
     <div>
       <Layout>
@@ -53,7 +71,7 @@ const CreateAccount = () => (
         </>
       </Layout>
     </div>
-  
-)
+  )
+}
 
 export default CreateAccount;
