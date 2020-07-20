@@ -46,7 +46,7 @@ const CreateAccount = () => {
     <div>
       <Layout>
         <>
-          <H1>Create Account</H1>
+          <H1>Sign Up</H1>
           <Form 
             onSubmit={handleSubmit}
             noValidate
@@ -97,7 +97,7 @@ const CreateAccount = () => {
 
               <InputSubmit 
                   type="submit"
-                  value="Create Account"
+                  value="Sign Up"
               />
           </Form>
         </>
