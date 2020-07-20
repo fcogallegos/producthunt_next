@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Router from 'next/router';
 import styled from '@emotion/styled';
 import Layout from '../components/layout/Layout';
 import { Form, Field, InputSubmit, Error } from '../components/ui/Form';
@@ -24,6 +25,8 @@ const STATE_INITIAL = {
 
 const CreateAccount = () => {
 
+  const [ error, saveError ] = useState(false);
+
   const { values, errors, handleChange, handleSubmit, handleBlur } = useValidation(STATE_INITIAL, validateCreateAccount, createAccount);
 
   const { name, email, password } = values;
@@ -31,8 +34,10 @@ const CreateAccount = () => {
   async function createAccount() {
     try {
       await firebase.register(name, email, password);
+      Router.push('/');
     } catch (error) {
       console.error('There was an error to create the user ', error.message);
+      saveError(error.message);
     }
   }
 
@@ -87,6 +92,8 @@ const CreateAccount = () => {
                   />
               </Field>
               { errors.password && <Error>{errors.password}</Error>}
+
+              { error && <Error>{error}</Error> }
 
               <InputSubmit 
                   type="submit"
