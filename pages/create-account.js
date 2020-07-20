@@ -3,14 +3,18 @@ import styled from '@emotion/styled';
 import Layout from '../components/layout/Layout';
 import { Form, Field, InputSubmit, Error } from '../components/ui/Form';
 
+import firebase from '../firebase';
+
+//validations
+import useValidation from '../hooks/useValidation';
+import validateCreateAccount from '../validation/validateCreateAccount';
+
+
 const H1 = styled.h1`
   text-align: center;
   margin-top: 5rem;
 `;
 
-//validations
-import useValidation from '../hooks/useValidation';
-import validateCreateAccount from '../validation/validateCreateAccount';
 
 const STATE_INITIAL = {
   name: '',
@@ -20,12 +24,16 @@ const STATE_INITIAL = {
 
 const CreateAccount = () => {
 
-  const { values, errors, handleChange, handleSubmit, handleBlur } = useValidation(STATE_INITIAL, validateCreateAccount);
+  const { values, errors, handleChange, handleSubmit, handleBlur } = useValidation(STATE_INITIAL, validateCreateAccount, createAccount);
 
   const { name, email, password } = values;
 
-  function createAccount() {
-    console.log('Creating account...');
+  async function createAccount() {
+    try {
+      await firebase.register(name, email, password);
+    } catch (error) {
+      console.error('There was an error to create the user ', error.message);
+    }
   }
 
   return (
@@ -36,6 +44,7 @@ const CreateAccount = () => {
           <H1>Create Account</H1>
           <Form 
             onSubmit={handleSubmit}
+            noValidate
           >
               <Field>
                   <label htmlFor="name">Name</label>
