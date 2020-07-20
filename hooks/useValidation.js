@@ -16,7 +16,7 @@ const useValidation = (stateInitial, validate, fn) => {
             }
             saveSubmitForm(false);
         }
-    }, []);
+    }, [errors]);
 
     //function that execute when the user writes something
     const handleChange = e => {
@@ -34,12 +34,18 @@ const useValidation = (stateInitial, validate, fn) => {
         saveSubmitForm(true);
     }
 
+    //when the blur event is executed
+    const handleBlur = () => {
+        const errorsValidation = validate(values);
+        saveErrors(errorsValidation);
+    }
+
     return {
         values,
         errors,
-        submitForm,
         handleChange,
-        handleSubmit
+        handleSubmit,
+        handleBlur
     };
 }
  
