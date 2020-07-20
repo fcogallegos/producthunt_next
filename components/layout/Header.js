@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import Search from '../ui/Search';
 import Navegation from './Navegation';
 import Button from '../ui/Button';
+import { FirebaseContext } from '../../firebase';
 
 
 const ContainerHeader = styled.div`
@@ -51,7 +52,7 @@ const DivLeft = styled.div`
 
 const Header = () => {
 
-    const user = false;
+    const { user, firebase } = useContext(FirebaseContext);
 
     return ( 
         <header>   
@@ -73,10 +74,11 @@ const Header = () => {
                     <Div>
                         { user ? (
                             <>
-                                <p><P>Hi: Francisco</P></p>
+                                <p><P>Hi: {user.displayName}</P></p>
                             
                                 <Button 
                                     bgColor="true"
+                                    onClick={() => firebase.logout()}
                                 >Log Out</Button>
                             </>    
                         ) : (
