@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import styled from '@emotion/styled';
 import Layout from '../components/layout/Layout';
+import DetailsProduct from '../components/layout/DetailsProduct';
 import { FirebaseContext } from '../firebase';
+
 
 const Heading = styled.h1`
   color: blue;
@@ -35,7 +37,18 @@ const Home = () => {
   
     <div>
       <Layout>
-        <h1>Start</h1>
+        <div className="listed-products">
+          <div className="container">
+            <ul className="bg-white">
+              { products.map(product => (
+                  <DetailsProduct 
+                      key={product.id}
+                      product={product}
+                  />
+              ))}
+            </ul>
+          </div>
+        </div>
       </Layout>
     </div>
   
