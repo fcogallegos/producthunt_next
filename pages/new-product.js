@@ -48,6 +48,7 @@ const NewProduct = () => {
   // Context with the CRUD operations of firebase
   const { user, firebase } = useContext(FirebaseContext);
   
+  console.log(user);
 
   async function createProduct() {
     
@@ -66,7 +67,11 @@ const NewProduct = () => {
         description,
         votes: 0,
         comments: [],
-        created: Date.now()
+        created: Date.now(),
+        creator: {
+          id: user.uid,
+          name: user.displayName
+        }
       }
 
       //insert to database 

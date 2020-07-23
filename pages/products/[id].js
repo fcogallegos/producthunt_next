@@ -66,7 +66,7 @@ const Product = () => {
 
     if(Object.keys(product).length === 0) return 'Loading...';
 
-    const { comments, created, description, company, name, url, urlimage, votes } = product;
+    const { comments, created, description, company, name, url, urlimage, votes, creator } = product;
     
 
     return ( 
@@ -81,6 +81,7 @@ const Product = () => {
                     <ContainerProduct>
                         <div>
                             <p>Posted { formatDistanceToNow(new Date(created))} ago </p>
+                            <p>Posted by: {creator.name} of {company}</p>
                             <img src={urlimage} />
                             <p>{description}</p>
 
