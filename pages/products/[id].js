@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const Product = () => {
-    return ( <h1>From [id].js</h1> );
+    //Routing for get the current "id"
+    const router = useRouter();
+    const { query: { id } } = router;
+
+    useEffect(() => {
+        if(id) {
+            console.log("There is an id ", id);
+        }
+    }, [id])
+
+    return ( <h1>From {id}</h1> );
 }
  
 export default Product;
