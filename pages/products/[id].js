@@ -6,8 +6,9 @@ import Layout from '../../components/layout/Layout';
 import { FirebaseContext } from '../../firebase';
 import Error404 from '../../components/layout/404';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { InputSubmit, Field } from '../../components/ui/Form';
-
+import Button from '../../components/ui/Button';
 
 const H1 = styled.h1`
     text-align: center;
@@ -18,6 +19,13 @@ const H2 = styled.h2`
     margin: 2rem 0; 
 `;
 
+const Votes = styled.p`
+    text-align: center;
+`;
+
+const Divotes = styled.div`
+     margin-top: 5rem;
+`;
 
 const ContainerProduct = styled.div`
     @media (min-width: 768px) {
@@ -101,7 +109,16 @@ const Product = () => {
                         </div>
 
                         <aside>
-                            2
+                            <Button
+                                target="_blank"
+                                bgColor="true"
+                                href={url}
+                            >Visit URL</Button>
+
+                            <Divotes>
+                                <Votes>{votes} Votes</Votes>
+                                <Button>Vote</Button>
+                            </Divotes>
                         </aside>
                     </ContainerProduct>
                 </div>
