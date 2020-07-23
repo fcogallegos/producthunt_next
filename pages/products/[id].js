@@ -1,16 +1,23 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import Layout from '../../components/layout/Layout';
 import { FirebaseContext } from '../../firebase';
 import Error404 from '../../components/layout/404';
 import styled from '@emotion/styled';
+import { InputSubmit, Field } from '../../components/ui/Form';
 
 
 const H1 = styled.h1`
     text-align: center;
     margin-top: 5rem;
 `;
+
+const H2 = styled.h2`
+    margin: 2rem 0; 
+`;
+
 
 const ContainerProduct = styled.div`
     @media (min-width: 768px) {
@@ -65,9 +72,34 @@ const Product = () => {
 
                     <ContainerProduct>
                         <div>
-                            1
+                            <p>Posted { formatDistanceToNow(new Date(created))} ago </p>
+                            <img src={urlimage} />
+                            <p>{description}</p>
+
+                            <h2>Add your comment</h2>
+                            <form>
+                                <Field>
+                                    <input 
+                                        type="text"
+                                        name="message"
+                                    />
+                                </Field>
+                                <InputSubmit 
+                                    type="submit"
+                                    value="Add Comment"
+                                />
+                            </form>
+
+                            <H2>Comments</H2>
+
+                            { comments.map(comment => (
+                                <li>
+                                    <p>{comment.name}</p>
+                                    <p>Written by: {comment.userName}</p>
+                                </li>
+                            )) }
                         </div>
-        
+
                         <aside>
                             2
                         </aside>
