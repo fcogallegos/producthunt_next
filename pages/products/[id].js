@@ -47,7 +47,7 @@ const Product = () => {
     const { query: { id } } = router;
 
     //context of firebase
-    const { firebase } = useContext(FirebaseContext);
+    const { firebase, user } = useContext(FirebaseContext);
 
     useEffect(() => {
         if(id) {
@@ -85,19 +85,23 @@ const Product = () => {
                             <img src={urlimage} />
                             <p>{description}</p>
 
-                            <h2>Add your comment</h2>
-                            <form>
-                                <Field>
-                                    <input 
-                                        type="text"
-                                        name="message"
+                            { user && (
+                                <>
+                                <h2>Add your comment</h2>
+                                <form>
+                                    <Field>
+                                        <input 
+                                            type="text"
+                                            name="message"
+                                        />
+                                    </Field>
+                                    <InputSubmit 
+                                        type="submit"
+                                        value="Add Comment"
                                     />
-                                </Field>
-                                <InputSubmit 
-                                    type="submit"
-                                    value="Add Comment"
-                                />
-                            </form>
+                                </form>
+                                </>
+                            ) }
 
                             <H2>Comments</H2>
 
@@ -118,7 +122,10 @@ const Product = () => {
 
                             <Divotes>
                                 <Votes>{votes} Votes</Votes>
-                                <Button>Vote</Button>
+                                
+                                { user && (
+                                    <Button>Vote</Button>
+                                ) }
                             </Divotes>
                         </aside>
                     </ContainerProduct>
