@@ -73,7 +73,8 @@ const NewProduct = () => {
         creator: {
           id: user.uid,
           name: user.displayName
-        }
+        },
+        voted: []
       }
 
       //insert to database 
@@ -127,7 +128,7 @@ const NewProduct = () => {
                    <input 
                        type="text"
                        id="name"
-                       placeholder="Your name"
+                       placeholder="Product name"
                        name="name"
                        value={name}
                        onChange={handleChange}

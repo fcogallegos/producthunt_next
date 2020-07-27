@@ -62,11 +62,12 @@ const Product = () => {
             }
             getProduct();
         }
-    }, [id]);
+    }, [id, product]);
 
     if(Object.keys(product).length === 0) return 'Loading...';
 
-    const { comments, created, description, company, name, url, urlimage, votes, creator } = product;
+    const { comments, created, description, company, name, url, urlimage, votes, creator
+    , voted } = product;
 
     //manage and validate the votes
     const voteProduct = () => {
@@ -76,10 +77,17 @@ const Product = () => {
 
         //get and sum a new vote
         const newTotal = votes + 1;
-        console.log(newTotal);
+        
+        //verify if the user have voted
+        if(voted.includes(user.uid)) return;
+
+        //save the ID of the user that he have voted
+        const newVoted = [...voted, user.uid];
 
         // update in the DB
-        firebase.db.collection('products').doc(id).update({ votes: newTotal })
+        firebase.db.collection('products').doc(id).update({ 
+            votes: newTotal, 
+            voted: newVoted })
 
         // update the state
         saveProduct({
