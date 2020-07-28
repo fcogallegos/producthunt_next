@@ -45,6 +45,17 @@ const ContainerProduct = styled.div`
    
 `;
 
+const CreatorProduct = styled.p`
+    padding: .5rem 2rem;
+    background-color: #DA552F;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+`;
+
 const Product = () => {
 
     //state of the component
@@ -112,6 +123,13 @@ const Product = () => {
             ...comment,
             [e.target.name] : e.target.value
         })
+    }
+
+    //identify if comment is of the creator product
+    const isCreator = id => {
+        if(creator.id == id) {
+            return true;
+        }
     }
 
     const addComment = e => {
@@ -186,7 +204,10 @@ const Product = () => {
                                         key={`${comment.userId}-${i}`}
                                     >
                                         <p>{comment.message}</p>
-                                        <SPAN><p>Written by: {comment.userName}</p></SPAN>
+                                        <p>Written by: 
+                                            <SPAN>{comment.userName}</SPAN> 
+                                        </p>
+                                        { isCreator( comment.userId ) && <CreatorProduct>Is Creator</CreatorProduct> }
                                     </LI>
                                 )) }
                                 </ul>

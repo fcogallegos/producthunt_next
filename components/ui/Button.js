@@ -10,6 +10,7 @@ const Button = styled.a`
     text-align: center;
     background-color: ${props => props.bgColor ? '#DA552F' : 'white'};
     color: ${props => props.bgColor ? 'white' : '#000'};
+    border-radius: 4px;
 
     &:last-of-type {
         margin-right: 0;
