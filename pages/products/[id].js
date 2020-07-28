@@ -62,6 +62,7 @@ const Product = () => {
     const [ product, saveProduct ] = useState({});
     const [ error, saveError ] = useState(false);
     const [ comment, saveComment ] = useState({});
+    const [ consultDB, saveConsultDB ] = useState(true);
 
     //Routing for get the current "id"
     const router = useRouter();
@@ -71,21 +72,23 @@ const Product = () => {
     const { firebase, user } = useContext(FirebaseContext);
 
     useEffect(() => {
-        if(id) {
+        if(id && consultDB) {
             const getProduct = async () => {
                 const productQuery = await firebase.db.collection('products').doc(id);
                 const product = await productQuery.get();
                 if(product.exists) {
                     saveProduct( product.data() );
+                    saveConsultDB(false);
                 } else {
                     saveError( true );
+                    saveConsultDB(false);
                 }
             }
             getProduct();
         }
-    }, [id, product]);
+    }, [id]);
 
-    if(Object.keys(product).length === 0) return 'Loading...';
+    if(Object.keys(product).length === 0 && !error) return 'Loading...';
 
     const { comments, created, description, company, name, url, urlimage, votes, creator
     , voted } = product;
@@ -115,6 +118,8 @@ const Product = () => {
             ...product,
             votes: newTotal
         })
+
+        saveConsultDB(false); //there is a vote, then consult to DB
     }
     
     //functions for create comments
@@ -157,13 +162,13 @@ const Product = () => {
             comments: newComments
         })
         
+        saveConsultDB(false); //there is a COMMENT, then consult to DB
     }
 
     return ( 
         <Layout>
             <>
-                { error && <Error404 /> }
-
+                { error ? <Error404 /> : (
                 <div className="container">
                     <H1>{name}</H1>
                 
@@ -204,7 +209,7 @@ const Product = () => {
                                         key={`${comment.userId}-${i}`}
                                     >
                                         <p>{comment.message}</p>
-                                        <p>Written by: 
+                                        <p>Written by:
                                             <SPAN>{comment.userName}</SPAN> 
                                         </p>
                                         { isCreator( comment.userId ) && <CreatorProduct>Is Creator</CreatorProduct> }
@@ -233,6 +238,7 @@ const Product = () => {
                         </aside>
                     </ContainerProduct>
                 </div>
+                ) }
             </>
         </Layout> 
     );
