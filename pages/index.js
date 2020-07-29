@@ -13,7 +13,6 @@ const Home = () => {
 
   const { products } = useProducts('created');
 
-
   return (
     <div>
       <Layout>
@@ -31,7 +30,6 @@ const Home = () => {
         </div>
       </Layout>
     </div>
-  
 )
 }
 
